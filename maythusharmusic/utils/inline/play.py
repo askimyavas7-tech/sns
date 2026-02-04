@@ -68,9 +68,9 @@ def stream_markup_timer(_, chat_id, played, dur):
         ],
         [
             InlineKeyboardButton(text="ᴏᴡɴᴇʀ", url="https://t.me/Barbarnyarnyar69"),
-            InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ", url="https://t.me/infinitylovegp"),
+            InlineKeyboardButton(text="ရည်းစားရှာမယ်", url="https://t.me/cupid153"),
         ],
-        [InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close")],
+        [InlineKeyboardButton(text="စကားပြောမယ်", url="https://t.me/+_k1niXZLTT40ZWVl")],
     ]
     return buttons
 
@@ -86,9 +86,9 @@ def stream_markup(_, chat_id):
         ],
         [
             InlineKeyboardButton(text="ᴏᴡɴᴇʀ", url="https://t.me/Barbarnyarnyar69"),
-            InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ", url="https://t.me/infinitylovegp"),
+            InlineKeyboardButton(text="ရည်းစားရှာမယ်", url="https://t.me/cupid153"),
         ],
-        [InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close")],
+        [InlineKeyboardButton(text="စကားပြောမယ်", url="https://t.me/+_k1niXZLTT40ZWVl")],
     ]
     return buttons
 
