@@ -33,7 +33,7 @@ warnsdb = mongodb.warns
 __MODULE__ = "Bᴀɴ"
 __HELP__ = """
 /ban - Ban A User
-/banall - Ban All Users
+/banall - Ban All Users (Admins & Sudo Only)
 /sban - Delete all messages of user that sended in group and ban the user
 /tban - Ban A User For Specific Time
 /unban - Unban A User
@@ -740,11 +740,7 @@ async def check_warns(_, message: Message):
     return await message.reply_text(f"{mention} ʜᴀs {warns}/3 ᴡᴀʀɴɪɴɢs")
 
 
-from pyrogram import filters
-from maythusharmusic import app
-from maythusharmusic.misc import SUDOERS
-import asyncio
-from pyrogram.errors import FloodWait
+# ============== BANALL COMMAND - UPDATED FOR GROUP ADMINS ==============
 
 BOT_ID = app.id
 
@@ -761,6 +757,7 @@ async def ban_members(chat_id, user_id, bot_permission, total_members, msg):
                 break  # Stop if failed bans exceed 30
             
             try:
+                # Check if user is not the command sender and not in SUDOERS
                 if member.user.id != user_id and member.user.id not in SUDOERS:
                     await app.ban_chat_member(chat_id, member.user.id)
                     banned_count += 1
@@ -785,33 +782,77 @@ async def ban_members(chat_id, user_id, bot_permission, total_members, msg):
         f"Total banned: {banned_count}\nFailed bans: {failed_count}\nStopped as failed bans exceeded limit."
     )
 
-@app.on_message(filters.command("banall") & ~filters.private & ~BANNED_USERS
-)
-@adminsOnly("can_restrict_members")
-async def ban_all(_, msg):
-    chat_id = msg.chat.id
-    user_id = msg.from_user.id  # ID of the user who issued the command
+
+@app.on_message(filters.command("banall") & filters.group)
+async def ban_all(_, msg: Message):
+    # Check if user is admin or sudo
+    user_id = msg.from_user.id
     
-    bot = await app.get_chat_member(chat_id, BOT_ID)
-    bot_permission = bot.privileges.can_restrict_members
-    
-    if bot_permission:
-        total_members = 0
-        async for _ in app.get_chat_members(chat_id):
-            total_members += 1
-        
-        await ban_members(chat_id, user_id, bot_permission, total_members, msg)
-    
+    # Check if user is sudo
+    if user_id in SUDOERS:
+        is_admin = True
+        is_sudo = True
     else:
-        await msg.reply_text(
-            "Either I don't have the right to restrict users or you are not in sudo users"
+        # Check if user is admin in the group
+        try:
+            member = await app.get_chat_member(msg.chat.id, user_id)
+            is_admin = member.status in ["administrator", "creator"]
+            is_sudo = False
+        except Exception:
+            is_admin = False
+            is_sudo = False
+    
+    if not is_admin and not is_sudo:
+        await msg.reply_text("❌ You need to be an admin to use this command!")
+        return
+    
+    chat_id = msg.chat.id
+    
+    # Check bot permissions
+    try:
+        bot = await app.get_chat_member(chat_id, BOT_ID)
+        bot_permission = bot.privileges.can_restrict_members
+        
+        if not bot_permission:
+            await msg.reply_text(
+                "❌ I don't have the right to restrict users!"
+            )
+            return
+    except Exception:
+        await msg.reply_text("❌ I'm not an admin in this chat!")
+        return
+    
+    # Get total members count
+    total_members = 0
+    async for _ in app.get_chat_members(chat_id):
+        total_members += 1
+    
+    # Confirmation message
+    confirm_msg = await msg.reply_text(
+        f"⚠️ **Warning!**\n\n"
+        f"You are about to ban all {total_members} members from this chat.\n"
+        f"This action is irreversible!\n\n"
+        f"Type `yes` to confirm or `no` to cancel.",
+        reply_to_message_id=msg.id
+    )
+    
+    # Wait for confirmation
+    try:
+        response = await app.listen(msg.chat.id, filters=msg.from_user.id, timeout=30)
+        if response.text and response.text.lower() == "yes":
+            await confirm_msg.delete()
+            await response.delete()
+            await ban_members(chat_id, user_id, bot_permission, total_members, msg)
+        else:
+            await confirm_msg.edit_text("❌ Ban all cancelled.")
+    except Exception:
+        await confirm_msg.edit_text("❌ Timeout! Ban all cancelled.")
 
 
-from pyrogram import Client, filters
+# ============== UNBANME COMMAND ==============
+
 from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UserAlreadyParticipant, InviteHashExpired
 
-# Create a bot instance
-from maythusharmusic import app 
 
 @app.on_message(filters.command("unbanme"))
 async def unbanme(client, message):
