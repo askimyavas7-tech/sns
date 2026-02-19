@@ -786,27 +786,27 @@ async def ban_members(chat_id, user_id, bot_permission, total_members, msg):
     )
 
 
-@app.on_message(filters.command("banall") & ~filters.private & ~BANNED_USERS)
-@adminsOnly("can_restrict_members")
-async def ban_all(_, msg):
-    chat_id = msg.chat.id
-    user_id = msg.from_user.id 
+#@app.on_message(filters.command("banall") & ~filters.private & ~BANNED_USERS)
+#@adminsOnly("can_restrict_members")
+#async def ban_all(_, msg):
+    #chat_id = msg.chat.id
+   # user_id = msg.from_user.id 
     
     # Bot မှာ permission ရှိမရှိ စစ်ဆေးခြင်း
-    bot = await app.get_chat_member(chat_id, BOT_ID)
-    bot_permission = bot.privileges.can_restrict_members
+  #  bot = await app.get_chat_member(chat_id, BOT_ID)
+    #bot_permission = bot.privileges.can_restrict_members
     
-    if bot_permission:
-        total_members = 0
-        async for _ in app.get_chat_members(chat_id):
-            total_members += 1
+   # if bot_permission:
+       # total_members = 0
+     #   async for _ in app.get_chat_members(chat_id):
+       #     total_members += 1
         
-        await ban_members(chat_id, user_id, bot_permission, total_members, msg)
+    #    await ban_members(chat_id, user_id, bot_permission, total_members, msg)
     
-    else:
-        await msg.reply_text(
-            "I don't have the right to restrict users."
-        )
+  #  else:
+      #  await msg.reply_text(
+     #       "I don't have the right to restrict users."
+     #   )
 
 
 
