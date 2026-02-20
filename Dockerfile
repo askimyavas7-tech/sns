@@ -1,39 +1,15 @@
-# Base image
-FROM python:3.11-slim
+FROM python:3.10-slim-bullseye
 
-# Set working directory
-WORKDIR /app
-
-# Copy the project definition file first for better layer caching
-# requirements.txt အစား pyproject.toml ကို ကူးထည့်ပါ
-COPY pyproject.toml .
-
-# (Optional) သင့်မှာ setup.py ဒါမှမဟုတ် setup.cfg files တွေ သုံးထားသေးရင် 
-# သူတို့ကိုပါ ဒီနေရာမှာ ကူးထည့်ပေးရပါမယ်။
-# COPY setup.py .
-# COPY setup.cfg .
-
-# Install system dependencies, Deno, and Python packages in a single layer
-RUN apt-get update -y && apt-get upgrade -y \
-    # Install system dependencies
-    && apt-get install -y --no-install-recommends \
-        ffmpeg \
-        curl \
-        unzip \
-        git \
-    # Install Deno
-    && curl -fsSL https://deno.land/install.sh | sh \
-    && ln -s /root/.deno/bin/deno /usr/local/bin/deno \
-    # Install Python dependencies
-    && pip3 install -U pip \
-    # requirements.txt အစား "pip3 install ." ကို အသုံးပြုပါ
-    && pip3 install -U . --no-cache-dir \
-    # Clean up apt cache
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ffmpeg \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy the rest of the application code
-COPY . .
+COPY . /app/
+WORKDIR /app/
 
-# Set the default command
-CMD ["bash", "start"]
+RUN python3 -m pip install --upgrade pip setuptools
+RUN apt-get update && apt-get install -y git
+RUN pip3 install --no-cache-dir --upgrade --requirement requirements.txt
+
+CMD python3 -m BrandrdXMusic
