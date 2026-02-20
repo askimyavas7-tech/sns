@@ -32,7 +32,7 @@ DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 900))
 LOGGER_ID = int(getenv("LOGGER_ID", None))
 
 # Get this value from @BRANDRD_ROBOT on Telegram by /id
-OWNER_ID = int(getenv("OWNER_ID", "1318826936"))
+OWNER_ID = int(getenv("OWNER_ID", ""))
 
 ## Fill these variables if you're deploying on heroku.
 # Your heroku app name
@@ -50,11 +50,11 @@ GIT_TOKEN = getenv(
 )  # Fill this variable if your upstream repository is private
 
 
-SUPPORT_CHANNEL_LINK = getenv("SUPPORT_CHANNEL_LINK", "@JBmusic_myanmar")
-SUPPORT_CHAT_LINK = getenv("SUPPORT_CHAT_LINK", "@JBmusic_myanmar2002")
+SUPPORT_CHANNEL_LINK = getenv("SUPPORT_CHANNEL_LINK", "https://t.me/MUHABBET_SOFASI_TR")
+SUPPORT_CHAT_LINK = getenv("SUPPORT_CHAT_LINK", "https://t.me/MUHABBET_SOFASI_TR")
 
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/JBmusic_myanmar")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/JBmusic_myanmar2002")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/MUHABBET_SOFASI_TR")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/MUHABBET_SOFASI_TR")
 # Set this to True if you want the assistant to automatically leave chats after an interval
 AUTO_LEAVING_ASSISTANT = bool(getenv("AUTO_LEAVING_ASSISTANT", False))
 
@@ -99,22 +99,22 @@ confirmer = {}
 
 
 START_IMG_URL = getenv(
-    "START_IMG_URL", "https://files.catbox.moe/0gdu2w.jpg"
+    "START_IMG_URL", "https://files.catbox.moe/ama5e3.png"
 )
 PING_IMG_URL = getenv(
-    "PING_IMG_URL", "https://files.catbox.moe/0gdu2w.jpg"
+    "PING_IMG_URL", "https://files.catbox.moe/ama5e3.png"
 )
-PLAYLIST_IMG_URL = "https://files.catbox.moe/0gdu2w.jpg"
-STATS_IMG_URL = "https://files.catbox.moe/0gdu2w.jpg"
-JOIN_IMG_URL = "https://files.catbox.moe/61mg5q.jpg"
-TELEGRAM_AUDIO_URL = "https://files.catbox.moe/0gdu2w.jpg"
-TELEGRAM_VIDEO_URL = "https://files.catbox.moe/0gdu2w.jpg"
-STREAM_IMG_URL = "https://files.catbox.moe/tyeotp.jpg"
-SOUNCLOUD_IMG_URL = "https://files.catbox.moe/tyeotp.jpg"
-YOUTUBE_IMG_URL = "https://files.catbox.moe/0gdu2w.jpg"
-SPOTIFY_ARTIST_IMG_URL = "https://files.catbox.moe/tyeotp.jpg"
-SPOTIFY_ALBUM_IMG_URL = "https://files.catbox.moe/tyeotp.jpg"
-SPOTIFY_PLAYLIST_IMG_URL = "https://files.catbox.moe/tyeotp.jpg"
+PLAYLIST_IMG_URL = "https://files.catbox.moe/ama5e3.png"
+STATS_IMG_URL = "https://files.catbox.moe/ama5e3.png"
+JOIN_IMG_URL = "https://files.catbox.moe/ama5e3.png"
+TELEGRAM_AUDIO_URL = "https://files.catbox.moe/ama5e3.png"
+TELEGRAM_VIDEO_URL = "https://files.catbox.moe/ama5e3.png"
+STREAM_IMG_URL = "https://files.catbox.moe/ama5e3.png"
+SOUNCLOUD_IMG_URL = "https://files.catbox.moe/ama5e3.png"
+YOUTUBE_IMG_URL = "https://files.catbox.moe/ama5e3.png"
+SPOTIFY_ARTIST_IMG_URL = "https://files.catbox.moe/ama5e3.png"
+SPOTIFY_ALBUM_IMG_URL = "https://files.catbox.moe/ama5e3.png"
+SPOTIFY_PLAYLIST_IMG_URL = "https://files.catbox.moe/ama5e3.png"
 
 
 
