@@ -67,10 +67,10 @@ def stream_markup_timer(_, chat_id, played, dur):
             )
         ],
         [
-            InlineKeyboardButton(text="Owner", url="https://t.me/Julierbo2_151102"),
-            InlineKeyboardButton(text="Support", url="https://t.me/julierbo3_151102"),
+            InlineKeyboardButton(text="Owner", url="https://tme/kral_surucu"),
+            InlineKeyboardButton(text="Support", url="https://t.me/MUHABBET_SOFASI_TR"),
         ],
-        [InlineKeyboardButton(text="စကားပြော", url="https://t.me/Myanmar_2002")],
+        [InlineKeyboardButton(text="KURUCU", url="https://t.me/kral_surucu")],
     ]
     return buttons
 
@@ -84,10 +84,10 @@ def stream_markup(_, chat_id):
             InlineKeyboardButton(text="▢", callback_data=f"ADMIN Stop|{chat_id}"),
         ],
         [
-            InlineKeyboardButton(text="Owner", url="https://t.me/Julierbo2_151102"),
-            InlineKeyboardButton(text="Support", url="https://t.me/julierbo3_151102"),
+            InlineKeyboardButton(text="Owner", url="https://t.me/kral_surucu"),
+            InlineKeyboardButton(text="Support", url="https://t.me/MUHABBET_SOFASI_TR"),
         ],
-        [InlineKeyboardButton(text="စကားပြော", url="https://t.me/Myanmar_2002")],
+        [InlineKeyboardButton(text="KURUCU", url="https://t.me/kral_surucu")],
     ]
     return buttons
 
