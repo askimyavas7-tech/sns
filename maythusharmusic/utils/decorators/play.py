@@ -165,7 +165,7 @@ def PlayWrapper(command):
                         return await message.reply_text(
                             _["call_3"].format(app.mention, type(e).__name__)
                         )
-                    await asyncio.sleep(1)
+                    await asyncio.sleep(3)
                     await myu.edit(_["call_5"].format(app.mention))
                 except UserAlreadyParticipant:
                     pass
@@ -287,10 +287,9 @@ def CPlayWrapper(command):
             userbot = await get_assistant(chat_id)
             try:
                 try:
-                    get = await client.get_chat_member(chat_id, userbot.id)
+                    get = await client.get_chat_member(chat_id, userbot.username)
                 except ChatAdminRequired:
                     await message.reply_text(_["call_1"])
-                    return
                 if (
                     get.status == ChatMemberStatus.BANNED
                     or get.status == ChatMemberStatus.RESTRICTED
@@ -300,7 +299,6 @@ def CPlayWrapper(command):
                             i.mention, userbot.id, userbot.name, userbot.username
                         )
                     )
-                    return
             except UserNotParticipant:
                 if chat_id in clinks:
                     invitelink = clinks[chat_id]
@@ -316,12 +314,10 @@ def CPlayWrapper(command):
                             invitelink = await client.export_chat_invite_link(chat_id)
                         except ChatAdminRequired:
                             await message.reply_text(_["call_1"])
-                            return
                         except Exception as e:
                             await message.reply_text(
                                 _["call_3"].format(i.mention, type(e).__name__)
                             )
-                            return
 
                 if invitelink.startswith("https://t.me/+"):
                     invitelink = invitelink.replace(
@@ -338,8 +334,7 @@ def CPlayWrapper(command):
                         await message.reply_text(
                             _["call_3"].format(i.mention, type(e).__name__)
                         )
-                        return
-                    await asyncio.sleep(1)
+                    await asyncio.sleep(3)
                     await myu.edit(_["call_5"].format(i.mention))
                 except UserAlreadyParticipant:
                     pass
@@ -347,7 +342,6 @@ def CPlayWrapper(command):
                     await message.reply_text(
                         _["call_3"].format(i.mention, type(e).__name__)
                     )
-                    return
 
                 clinks[chat_id] = invitelink
 
