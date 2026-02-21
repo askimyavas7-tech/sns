@@ -1,22 +1,28 @@
 import os
 from typing import Dict
-
 import yaml
 
-DEFAULT_LANG = os.getenv("DEFAULT_LANG", "tr").lower()
+# Varsayılan dili zorla TR yap
+DEFAULT_LANG = "tr"
 
 languages: Dict[str, dict] = {}
 languages_present: Dict[str, str] = {}
 
-# İstemediğin dilleri burada kapat (my = Myanmar)
+# Myanmar dili tamamen kapalı
 DISABLED_LANGS = {"my", "mm"}
+
+
+def load_yaml(path: str):
+    with open(path, encoding="utf8") as f:
+        return yaml.safe_load(f) or {}
 
 
 def get_string(lang: str):
     """
-    - my/mm gibi istemediğin dil gelirse TR'ye düş
-    - lang yoksa TR
-    - TR yoksa EN
+    Dil alma sistemi:
+    - my/mm gelirse tr
+    - geçersiz dil gelirse tr
+    - tr yoksa en
     """
     code = (lang or "").strip().lower()
 
@@ -24,43 +30,48 @@ def get_string(lang: str):
         code = "tr"
 
     if code not in languages:
-        # Önce DEFAULT_LANG (tr), yoksa en
-        code = DEFAULT_LANG if DEFAULT_LANG in languages else "en"
+        code = "tr"
 
-    return languages[code]
+    if code not in languages:
+        code = "en"
+
+    return languages.get(code, languages.get("en", {}))
 
 
 LANG_DIR = "./strings/langs/"
 
-# EN mutlaka yüklensin
+# EN zorunlu
 en_path = os.path.join(LANG_DIR, "en.yml")
-if os.path.exists(en_path):
-    languages["en"] = yaml.safe_load(open(en_path, encoding="utf8"))
-    languages_present["en"] = languages["en"].get("name", "English")
-else:
+if not os.path.exists(en_path):
     raise FileNotFoundError("strings/langs/en.yml bulunamadı!")
 
-# Diğer dilleri yükle (disabled olanları yükleme)
+languages["en"] = load_yaml(en_path)
+languages_present["en"] = languages["en"].get("name", "English")
+
+# Diğer dilleri yükle
 for filename in os.listdir(LANG_DIR):
     if not filename.endswith(".yml"):
         continue
 
-    language_code = filename[:-4].lower()  # tr.yml -> tr
-    if language_code == "en":
-        continue
-    if language_code in DISABLED_LANGS:
-        continue  # my.yml vs tamamen devre dışı
+    language_code = filename[:-4].lower()
 
-    data = yaml.safe_load(open(os.path.join(LANG_DIR, filename), encoding="utf8"))
+    if language_code in {"en"}:
+        continue
+
+    if language_code in DISABLED_LANGS:
+        continue
+
+    file_path = os.path.join(LANG_DIR, filename)
+    data = load_yaml(file_path)
 
     # EN'deki eksik key'leri doldur
-    for k in languages["en"]:
+    for k, v in languages["en"].items():
         if k not in data:
-            data[k] = languages["en"][k]
+            data[k] = v
 
-    # name yoksa hata basıp çıkma; sadece dosyayı yine de ekle
     languages[language_code] = data
     languages_present[language_code] = data.get("name", language_code)
 
 
-LOGGERS = "Nhoe_Kyaite_Kaung_Layy_Robot"
+# LOGGERS Myanmar linkini tamamen kaldır
+LOGGERS = None
