@@ -11,7 +11,7 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from maythusharmusic import app
-from config import OWNER_ID
+from config import OWNER_ID, ERROR_FORMAT 
 
 
 async def aexec(code, client, message):

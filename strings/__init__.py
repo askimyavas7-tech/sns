@@ -465,7 +465,7 @@ for filename in os.listdir(r"./strings/langs/"):
 
 
 
-LOGGERS = "Nhoe_Kyaite_Kaung_Layy_Robot"
+LOGGERS = "musicmyanmar_helpbot"
 
 
 

@@ -23,7 +23,7 @@ async def start(client: Client, message: Message):
         ],
                 [
             InlineKeyboardButton(
-                text="❖ ᴄʜᴀɴɴᴇʟ ❖", url=f"https://t.me/sasukevipmusicbotsupport"
+                text="❖ ᴄʜᴀɴɴᴇʟ ❖", url=f"https://t.me/myanmar_music_Bot2027"
             ),
                 ],
                 [

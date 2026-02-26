@@ -100,11 +100,11 @@
 </h3>
 
 <p align="center">
-<a href="https://t.me/sasukevipmusicbotsupport"><img src="https://img.shields.io/badge/-Support%20Group-blue.svg?style=for-the-badge&logo=Telegram"></a>
+<a href="https://t.me/myanmar_music_Bot2027"><img src="https://img.shields.io/badge/-Support%20Group-blue.svg?style=for-the-badge&logo=Telegram"></a>
 </p>
 
 <p align="center">
-<a href="https://t.me/sasukevipmusicbotsupport"><img src="https://img.shields.io/badge/-Support%20Channel-blue.svg?style=for-the-badge&logo=Telegram"></a>
+<a href="https://t.me/myanmar_music_Bot2027"><img src="https://img.shields.io/badge/-Support%20Channel-blue.svg?style=for-the-badge&logo=Telegram"></a>
 </p>
 
 - <b> _sᴩᴇᴄɪᴀʟ ᴛʜᴀɴᴋs ᴛᴏ [ᴛᴇᴀᴍ ʙʀᴀɴᴅᴇᴅ](https://github.com/immortal-music) ғᴏʀ [sᴀsᴜᴋᴇ ᴍᴜsɪᴄ ʙᴏᴛ](https://t.me/sasukevipmusicbot)_</b>

